@@ -1,0 +1,15 @@
+```text
+# Archivos del sistema operativo (macOS)
+.DS_Store
+
+# Entornos virtuales de Python
+venv/
+env/
+.venv/
+
+# Caché y archivos compilados de Python
+__pycache__/
+*.pyc
+
+# Variables de entorno y datos sensibles
+.env
