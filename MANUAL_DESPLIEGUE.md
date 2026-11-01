@@ -12,16 +12,16 @@ Docker instalado y en ejecución en la máquina host o servidor de destino.
 Acceso a la terminal o consola de comandos.
 Imagen o entorno compatible con contenedores Linux/x86_64.
 3. Pasos de Despliegue Local y en Contenedor (Docker)
-Paso 1: Clonar el Repositorio
+* Paso 1: Clonar el Repositorio
 Bash
 git clone https://github.com/archermaysilee-oss/sistema-desercion-escolar.git
 cd sistema-desercion-escolar/backend
-Paso 2: Construir la Imagen Docker
+* Paso 2: Construir la Imagen Docker
 Ejecuta el siguiente comando dentro de la carpeta backend para generar la imagen del contenedor:
 Bash
 docker build -t desercion-backend .
 Verificación: La terminal debe mostrar la compilación exitosa de cada una de las capas de dependencias de Python indicando Successfully built.
-Paso 3: Ejecutar el Contenedor en Producción
+* Paso 3: Ejecutar el Contenedor en Producción
 Despliega el contenedor mapeando el puerto 5000 del servidor al puerto 5000 de la aplicación:
 Bash
 docker run -d -p 5000:5000 --name contenedor-desercion desercion-backend
