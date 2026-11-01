@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Predicción de Deserción Escolar</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background: #f4f4f9; }
+        .card { background: white; padding: 20px; border-radius: 8px; max-width: 400px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        input, button { width: 100%; padding: 10px; margin: 8px 0; box-sizing: border-box; }
+        button { background: #007BFF; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Sistema de Prevención Temprana</h2>
+        <label>Promedio:</label>
+        <input type="number" id="promedio" step="0.1" value="7.5">
+        <label>Asistencias (%):</label>
+        <input type="number" id="asistencias" value="85">
+        <label>Materias Reprobadas:</label>
+        <input type="number" id="materias_reprobadas" value="1">
+        <button onclick="enviarDatos()">Evaluar Riesgo</button>
+        <h3 id="resultado"></h3>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -6,27 +6,34 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-# Cargar el modelo de machine learning de deserción escolar
-try:
-    with open('modelo_desercion.pkl', 'rb') as f:
-        modelo = pickle.load(f)
-except Exception as e:
-    modelo = None
-    print(f"Advertencia: No se pudo cargar el modelo: {e}")
+# Cargar el modelo entrenado previamente
+with open('modelo_desercion.pkl', 'rb') as f:
+    modelo = pickle.load(f)
 
-@app.route('/')
-def home():
-    return jsonify({"estado": "API de Predicción de Deserción Escolar Activa"})
-
-@app.route('/predecir', methods=['POST'])
+@app.route('/api/v1/predict', methods=['POST'])
 def predecir():
-    if modelo is None:
-        return jsonify({"error": "El modelo no está disponible"}), 500
-    data = request.get_json()
-    # Aquí puedes ajustar las características según tu modelo
-    caracteristicas = np.array(data.get('features')).reshape(1, -1)
-    prediccion = modelo.predict(caracteristicas)
-    return jsonify({"prediccion": int(prediccion[0])})
+    try:
+        datos = request.get_json()
+        
+        features = np.array([[
+            datos.get('promedio', 0.0),
+            datos.get('asistencias', 0.0),
+            datos.get('nivel_socioeconomico', 1),
+            datos.get('materias_reprobadas', 0)
+        ]])
+        
+        prediccion = modelo.predict(features)
+        probabilidad = modelo.predict_proba(features)
+        
+        resultado = {
+            "riesgo_desercion": int(prediccion[0]),
+            "probabilidad": float(np.max(probabilidad))
+        }
+        
+        return jsonify(resultado), 200
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 400
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
