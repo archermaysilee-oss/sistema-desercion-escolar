@@ -1,4 +1,7 @@
 Manual de Despliegue en la Nube 
+
+
+
 Sistema Inteligente de Predicción y Prevención Temprana de Deserción Escolar
 Este manual detalla los procedimientos técnicos, la estructura de la aplicación en Flask y los pasos necesarios para desplegar el modelo predictivo de deserción escolar utilizando contenedores Docker en un entorno de producción o nube.
 
